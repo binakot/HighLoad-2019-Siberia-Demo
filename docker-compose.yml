@@ -1,0 +1,42 @@
+version: '3.4'
+
+networks:
+  overlay:
+    driver: overlay
+
+volumes:
+  postgres_data:
+    driver: local
+
+services:
+  postgres:
+    image: binakot/postgresql-timescaledb-pipelinedb
+    restart: on-failure
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+    ports:
+      - 5432:5432
+    networks:
+      - overlay
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./src/main/resources/sql/init.sql:/docker-entrypoint-initdb.d/init.sql
+
+  application:
+    build:
+      context: .
+      args:
+        JAR_FILE: ./build/libs/*.jar
+    restart: on-failure
+    environment:
+      - JAVA_OPTIONS=-Xmx256m -Xmx256m -DPG_HOST=postgres
+    ports:
+      - 8080:8080
+    networks:
+      - overlay
+    links:
+      - postgres
+    depends_on:
+      - postgres
