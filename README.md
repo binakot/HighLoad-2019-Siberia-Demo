@@ -8,11 +8,7 @@ about [TimescaleDB](https://github.com/timescale/timescaledb) and [PipelineDB](h
 Here is the announcement of my speech: 
 [https://www.highload.ru/siberia/2019/abstracts/5208](https://www.highload.ru/siberia/2019/abstracts/5208).
 
-> TODO Add links to slides!
-
-### Content
-
-> TODO What's about?
+The slides are on [speakerdeck](https://speakerdeck.com/binakot/time-series-data-in-a-relational-database-timescaledb-and-pipelinedb-extensions-for-postgresql) or [slideshare](https://www.slideshare.net/IvanMuratov1/time-series-data-in-a-relational-database-timescaledb-and-pipelinedb-extensions-for-postgresql)
 
 ### Getting Started
 
